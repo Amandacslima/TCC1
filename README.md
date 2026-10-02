@@ -49,4 +49,4 @@ A interface utiliza como cores principais:
 Clone o repositório:
 
 ```bash
-git clone 
+git clone https://github.com/Amandacslima/TCC1.git
