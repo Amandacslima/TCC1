@@ -49,4 +49,4 @@ A interface utiliza como cores principais:
 Clone o repositório:
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone 
