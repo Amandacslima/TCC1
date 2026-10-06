@@ -1,1 +1,72 @@
-<p>login works!</p>
+<div class="min-h-screen flex font-sans">
+  
+  <!-- Lado Esquerdo: Branding (Azul Marinho) -->
+  <div class="hidden md:flex md:w-1/2 bg-[#0B1F3A] flex-col justify-center items-center p-12 text-white">
+    <div class="max-w-md">
+      <h1 class="text-5xl font-bold mb-2 tracking-tight">MÉTODO</h1>
+      <h2 class="text-xl text-[#1468D8] font-semibold mb-8">Modelo de Ensino Tecnológico Orientado ao Desenvolvimento Ocupacional</h2>
+      <p class="text-gray-300 text-lg leading-relaxed">
+        Seu próximo caminho começa aqui. Descubra experiências, competências e pessoas que ampliam a sua formação acadêmica e profissional.
+      </p>
+    </div>
+  </div>
+
+  <!-- Lado Direito: Formulário (Fundo Cinza Claro) -->
+  <div class="w-full md:w-1/2 bg-[#F5F7FB] flex justify-center items-center p-8">
+    <div class="bg-white w-full max-w-md rounded-2xl shadow-sm border border-gray-100 p-8">
+      
+      <!-- Cabeçalho do Form -->
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-[#0B1F3A]">
+          {{ isLoginMode ? 'Bem-vindo de volta' : 'Crie sua conta' }}
+        </h2>
+        <p class="text-gray-500 mt-2 text-sm">
+          {{ isLoginMode ? 'Insira seus dados para acessar o UFPR Virtual' : 'Preencha os dados para iniciar sua jornada' }}
+        </p>
+      </div>
+
+      <!-- Formulário -->
+      <form (ngSubmit)="entrar()" class="space-y-5">
+        
+        <!-- Campo Nome (Aparece apenas no Cadastro) -->
+        <div *ngIf="!isLoginMode">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+          <input type="text" placeholder="Ex: Nome Sobrenome" 
+                 class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-[#1468D8] focus:border-[#1468D8] outline-none transition-all">
+        </div>
+
+        <!-- Campo Email -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">E-mail Institucional</label>
+          <input type="email" [(ngModel)]="email" name="email" required placeholder="aluno@ufpr.br ou professor@ufpr.br" 
+                 class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-[#1468D8] focus:border-[#1468D8] outline-none transition-all">
+        </div>
+
+        <!-- Campo Senha -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
+          <input type="password" [(ngModel)]="senha" name="senha" required placeholder="••••••••" 
+                 class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-[#1468D8] focus:border-[#1468D8] outline-none transition-all">
+        </div>
+
+        <!-- Mensagem de Erro -->
+        <p *ngIf="erro" class="text-red-500 text-sm font-medium text-center">{{ erro }}</p>
+
+        <!-- Botão Principal -->
+        <button type="submit" 
+                class="w-full bg-[#1468D8] hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 mt-2">
+          {{ isLoginMode ? 'Entrar' : 'Cadastrar' }}
+        </button>
+      </form>
+
+      <!-- Botão para Alternar Login/Cadastro -->
+      <div class="mt-8 text-center text-sm text-gray-500">
+        {{ isLoginMode ? 'Ainda não tem uma conta?' : 'Já possui uma conta?' }}
+        <button type="button" (click)="alternarModo()" class="text-[#1468D8] font-semibold hover:underline ml-1">
+          {{ isLoginMode ? 'Cadastre-se' : 'Faça login' }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

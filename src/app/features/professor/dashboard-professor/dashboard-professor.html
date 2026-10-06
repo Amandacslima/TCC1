@@ -1,1 +1,78 @@
-<p>dashboard-professor works!</p>
+<div class="p-10 max-w-6xl mx-auto">
+  
+  <div class="flex justify-between items-center mb-6">
+    <div class="text-sm text-gray-500">
+      <span>Início</span> <span class="mx-2">&gt;</span> <span class="font-medium text-gray-900">Visão geral do Professor</span>
+    </div>
+    <div class="w-10 h-10 bg-blue-200 text-blue-800 rounded-full flex items-center justify-center font-bold">
+      PR
+    </div>
+  </div>
+
+  <div class="bg-[#0B3B8A] rounded-2xl p-8 text-white flex justify-between items-center mb-8 relative overflow-hidden">
+    <div class="absolute right-10 top-1/2 -translate-y-1/2 w-48 h-48 border-[16px] border-white/5 rounded-full"></div>
+    <div class="absolute right-24 top-1/2 -translate-y-1/2 w-20 h-20 bg-white/10 rounded-full flex items-center justify-center">
+      <div class="w-2 h-2 bg-white rounded-full"></div>
+    </div>
+
+    <div class="relative z-10 max-w-xl">
+      <p class="text-sm text-blue-200 mb-2 font-medium tracking-wide uppercase">ÁREA DOCENTE</p>
+      <h2 class="text-4xl font-serif mb-3">Bem-vindo, Professor(a)</h2>
+      <p class="text-blue-100 mb-6 text-lg">Acompanhe o engajamento das suas turmas e gerencie suas atividades pendentes.</p>
+      <div class="flex gap-4">
+        <button class="bg-[#1468D8] hover:bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium transition-colors">
+          Acessar Turmas ↗
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-4 gap-4 mb-10">
+    <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+      <p class="text-sm text-gray-500 mb-1">Turmas ativas</p>
+      <h3 class="text-3xl font-bold text-gray-800">02</h3>
+      <p class="text-xs text-gray-400 mt-2">Semestre atual</p>
+    </div>
+    
+    <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+      <p class="text-sm text-gray-500 mb-1">Total de alunos</p>
+      <h3 class="text-3xl font-bold text-gray-800">77</h3>
+      <p class="text-xs text-gray-400 mt-2">Inscritos regularmente</p>
+    </div>
+
+    <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+      <p class="text-sm text-gray-500 mb-1">Trabalhos p/ corrigir</p>
+      <h3 class="text-3xl font-bold text-red-600">12</h3>
+      <p class="text-xs text-red-400 mt-2">Ação necessária</p>
+    </div>
+
+    <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+      <p class="text-sm text-gray-500 mb-1">Dúvidas no fórum</p>
+      <h3 class="text-3xl font-bold text-gray-800">04</h3>
+      <p class="text-xs text-gray-400 mt-2">Últimas 24 horas</p>
+    </div>
+  </div>
+
+  <div>
+    <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold mb-4">ACOMPANHAMENTO</p>
+    <h3 class="text-2xl font-serif text-gray-900 mb-6">Suas Turmas</h3>
+    
+    <div class="grid grid-cols-3 gap-6">
+      <div *ngFor="let turma of turmas" class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+        <div class="absolute left-0 top-0 bottom-0 w-1 {{ turma.cor }}"></div>
+        
+        <p class="text-xs text-gray-400 font-medium mb-1">{{ turma.codigo }}</p>
+        <h4 class="text-lg font-bold text-gray-800 mb-1">{{ turma.nome }}</h4>
+        <p class="text-sm text-gray-500 mb-6">{{ turma.alunos }} alunos matriculados</p>
+        
+        <div class="flex justify-between items-center border-t border-gray-100 pt-4">
+          <span class="text-sm font-medium" [ngClass]="{'text-red-500': turma.pendencias > 0, 'text-green-500': turma.pendencias === 0}">
+            {{ turma.pendencias > 0 ? turma.pendencias + ' pendências' : 'Tudo em dia' }}
+          </span>
+          <button class="text-[#1468D8] text-sm font-bold hover:underline">Gerenciar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

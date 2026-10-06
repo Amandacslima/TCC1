@@ -1,1 +1,9 @@
-<p>main-layout works!</p>
+<div class="flex h-screen bg-[#F5F7FB] font-sans overflow-hidden">
+  <!-- Sidebar fixa na esquerda -->
+  <app-sidebar></app-sidebar>
+  
+  <!-- Área de conteúdo principal à direita -->
+  <main class="flex-1 overflow-y-auto">
+    <router-outlet></router-outlet>
+  </main>
+</div>

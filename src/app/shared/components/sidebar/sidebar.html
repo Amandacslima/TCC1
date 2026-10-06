@@ -1,1 +1,44 @@
-<p>sidebar works!</p>
+<aside class="w-72 h-screen bg-[#0B1F3A] text-white flex flex-col justify-between overflow-y-auto">
+  <div>
+    <div class="p-6">
+      <h1 class="text-3xl font-bold tracking-tight">MÉTODO</h1>
+      <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-wider leading-tight">
+        Modelo de Ensino Tecnológico<br>Orientado ao Desenvolvimento Ocupacional
+      </p>
+    </div>
+
+    <!-- Perfil Dinâmico -->
+    <div class="px-6 mb-8">
+      <div class="bg-[#1468D8] rounded-xl p-3 flex items-center gap-3">
+        <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-sm font-bold">
+          {{ isProfessor() ? 'PR' : 'AC' }}
+        </div>
+        <div>
+          <p class="text-sm font-bold leading-tight">{{ isProfessor() ? 'Área do Professor' : 'Área do aluno' }}</p>
+          <p class="text-xs text-blue-200">{{ isProfessor() ? 'Docência - UFPR' : 'Graduação - ADS' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-4">
+      <p class="text-xs text-gray-400 uppercase tracking-wider mb-3 px-2">Seu espaço</p>
+      
+      <!-- Menu do Aluno -->
+      <nav *ngIf="!isProfessor()" class="flex flex-col gap-1">
+        <a routerLink="/aluno/dashboard" routerLinkActive="bg-[#1468D8] text-white font-medium" class="px-4 py-3 rounded-lg text-sm text-gray-300 hover:bg-[#1468D8]/50 transition-colors">VISÃO GERAL</a>
+        <a routerLink="/aluno/disciplinas" routerLinkActive="bg-[#1468D8] text-white font-medium" class="px-4 py-3 rounded-lg text-sm text-gray-300 hover:bg-[#1468D8]/50 transition-colors">MINHAS DISCIPLINAS</a>
+        <a routerLink="/aluno/trilhas" routerLinkActive="bg-[#1468D8] text-white font-medium" class="px-4 py-3 rounded-lg text-sm text-gray-300 hover:bg-[#1468D8]/50 transition-colors">TRILHAS DE EXPLORAÇÃO</a>
+        <a routerLink="/aluno/oportunidades" routerLinkActive="bg-[#1468D8] text-white font-medium" class="px-4 py-3 rounded-lg text-sm text-gray-300 hover:bg-[#1468D8]/50 transition-colors">OPORTUNIDADES</a>
+        <a routerLink="/aluno/portfolio" routerLinkActive="bg-[#1468D8] text-white font-medium" class="px-4 py-3 rounded-lg text-sm text-gray-300 hover:bg-[#1468D8]/50 transition-colors">MEU PORTFÓLIO</a>
+        <a routerLink="/aluno/calendario" routerLinkActive="bg-[#1468D8] text-white font-medium" class="px-4 py-3 rounded-lg text-sm text-gray-300 hover:bg-[#1468D8]/50 transition-colors">CALENDÁRIO</a>
+      </nav>
+
+      <!-- Menu do Professor -->
+      <nav *ngIf="isProfessor()" class="flex flex-col gap-1">
+        <a routerLink="/professor/dashboard" routerLinkActive="bg-[#1468D8] text-white font-medium" class="px-4 py-3 rounded-lg text-sm text-gray-300 hover:bg-[#1468D8]/50 transition-colors">VISÃO GERAL</a>
+        <a routerLink="/professor/turmas" routerLinkActive="bg-[#1468D8] text-white font-medium" class="px-4 py-3 rounded-lg text-sm text-gray-300 hover:bg-[#1468D8]/50 transition-colors">GERENCIAR TURMAS</a>
+        <a routerLink="/professor/relatorios" routerLinkActive="bg-[#1468D8] text-white font-medium" class="px-4 py-3 rounded-lg text-sm text-gray-300 hover:bg-[#1468D8]/50 transition-colors">RELATÓRIOS</a>
+      </nav>
+    </div>
+  </div>
+</aside>
