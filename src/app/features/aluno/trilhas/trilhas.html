@@ -1,1 +1,75 @@
-<p>trilhas works!</p>
+<div class="p-8 max-w-7xl mx-auto font-sans">
+  
+  <div class="mb-6">
+    <h2 class="text-3xl font-bold text-[#0B1F3A]">Trilhas de Exploração</h2>
+    <p class="text-gray-500 mt-1 text-sm">Mapeie seu progresso pelas sub-áreas do curso de TADS.</p>
+  </div>
+
+  <!-- Removido o scroll horizontal e o min-w fixo. A estrutura agora se acomoda na tela -->
+  <div class="flex items-center gap-8 py-6">
+    
+    <!-- Nó Central: TADS -->
+    <div class="relative flex-shrink-0 z-10 bg-white border-[3px] border-[#1468D8] rounded-full w-24 h-24 flex items-center justify-center text-center shadow-lg">
+      <h3 class="font-bold text-[#0B1F3A] text-lg tracking-widest">{{ curso }}</h3>
+    </div>
+
+    <!-- Container das Branches -->
+    <div class="relative flex flex-col gap-8 w-full">
+      <!-- Linha vertical mestre conectando TADS às Categorias -->
+      <div class="absolute left-[-20px] top-[40px] bottom-[40px] border-l-[3px] border-gray-300 z-0"></div>
+
+      <!-- Iteração das CATEGORIAS -->
+      <div *ngFor="let cat of categorias" class="relative flex items-center gap-6">
+        
+        <div class="absolute left-[-20px] top-1/2 w-5 border-t-[3px] border-gray-300 z-0"></div>
+
+        <!-- Nó da Categoria Principal (Centralizado perfeitamente ao lado das sub-branches com flex) -->
+        <div [ngClass]="cat.cor" class="text-white rounded-xl py-4 px-4 w-60 flex-shrink-0 shadow-md z-10 flex items-center gap-3">
+          <span class="text-2xl">{{ cat.icone }}</span>
+          <span class="font-bold text-xs uppercase tracking-wide leading-tight">{{ cat.nome }}</span>
+        </div>
+
+        <!-- Iteração das SUB-CATEGORIAS -->
+        <div class="flex flex-col gap-3 relative w-full">
+          <!-- Linha vertical conectando a categoria às suas sub-branches -->
+          <div class="absolute left-[-12px] top-4 bottom-4 border-l-[2px] border-gray-200 z-0"></div>
+
+          <div *ngFor="let sub of cat.subcategorias" class="relative flex items-center gap-4 pl-4">
+            <!-- Conector da Sub-branch -->
+            <div class="absolute left-[-12px] top-1/2 w-4 border-t-[2px] border-gray-200 z-0"></div>
+
+            <!-- Label da Sub-branch com largura fixa (w-52) garantindo que todas ocupem exatamente o mesmo espaço horizontal -->
+            <div class="bg-gray-100 text-gray-700 border border-gray-300 rounded-lg px-3 py-2 text-xs font-bold z-10 shadow-sm w-52 flex-shrink-0 text-center">
+              {{ sub.nome }}
+            </div>
+
+            <!-- Iteração das DISCIPLINAS dentro da Sub-branch -->
+            <div class="flex items-center gap-3 relative flex-wrap">
+              <div class="absolute left-0 top-1/2 w-full border-t-[2px] border-gray-200 z-0"></div>
+
+              <div *ngFor="let disc of sub.disciplinas" 
+                   class="relative z-10 bg-white border-[2px] rounded-2xl w-32 min-h-[80px] flex flex-col items-center justify-between p-2 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md cursor-pointer text-center"
+                   [ngClass]="disc.desbloqueada ? 'border-[#1468D8]' : 'border-gray-200 opacity-60 bg-gray-50'">
+                
+                <!-- Tags de Interligação -->
+                <div class="flex gap-1 mb-1 w-full justify-center flex-wrap" *ngIf="disc.tags && disc.tags.length > 0">
+                  <span *ngFor="let tag of disc.tags" class="bg-purple-100 text-purple-700 text-[8px] font-bold px-1 py-0.5 rounded border border-purple-200">
+                    {{ tag }}
+                  </span>
+                </div>
+
+                <span class="text-[11px] font-black leading-tight mb-1" [ngClass]="disc.desbloqueada ? 'text-[#0B1F3A]' : 'text-gray-400'">
+                  {{ disc.nome }}
+                </span>
+
+                <span class="text-[9px] text-gray-400 font-bold tracking-wider">{{ disc.codigo }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
