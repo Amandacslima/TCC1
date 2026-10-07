@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DadosService } from '../../../core/services/dados';
+import { Comentario } from '../../../shared/models/comentario.model';
 
 @Component({
   selector: 'app-dashboard-aluno',
@@ -7,8 +9,15 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './dashboard-aluno.html'
 })
-export class DashboardAluno {
-  // Mock de dados para simular as disciplinas do protótipo
+export class DashboardAluno implements OnInit {
+  comentariosRecentes: Comentario[] = [];
+
+  constructor(private dadosService: DadosService) {}
+
+  ngOnInit() {
+    this.comentariosRecentes = this.dadosService.getComentarios();
+  }
+
   disciplinas = [
     { codigo: 'DS140', nome: 'Desenvolvimento WEB II', professor: 'Prof. Razer Montaño', progresso: 72, cor: 'bg-blue-600' },
     { codigo: 'DS150', nome: 'Gestão empresas', professor: 'Prof. Paulo Eduardo', progresso: 44, cor: 'bg-purple-500' },

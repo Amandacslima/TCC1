@@ -1,0 +1,89 @@
+<div class="p-10 max-w-4xl mx-auto font-sans">
+  
+  <!-- Breadcrumb -->
+  <div class="text-sm text-gray-500 mb-6 flex items-center gap-2">
+    <a [routerLink]="['/aluno/disciplina', codigoDisciplina]" class="hover:text-[#1468D8]">Voltar para disciplina</a>
+    <span>&gt;</span>
+    <span class="font-medium text-gray-900">{{ moduloNome }}</span>
+  </div>
+
+  <!-- Cabeçalho do Módulo -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-8 mb-8 shadow-sm">
+    <span class="text-xs font-bold text-[#1468D8] uppercase tracking-wider">Módulo de Estudo</span>
+    <h2 class="text-3xl font-bold text-[#0B1F3A] mt-1 mb-2">{{ moduloNome }}</h2>
+    <p class="text-gray-600 text-sm">Acesse os materiais disponibilizados pelo professor e participe da discussão com a turma.</p>
+  </div>
+
+  <!-- Lista de Conteúdos (Slides, PDFs, Vídeos, Exercícios) -->
+  <div class="mb-10">
+    <h3 class="text-xl font-bold text-[#0B1F3A] mb-4">Materiais e Atividades</h3>
+    <div class="space-y-3">
+      <div *ngFor="let item of conteudos" class="bg-white border border-gray-200 p-4 rounded-xl flex items-center justify-between shadow-sm">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-blue-50 text-[#1468D8] flex items-center justify-center font-bold text-xs uppercase">
+            {{ item.tipo }}
+          </span>
+          <span class="text-sm font-semibold text-gray-800">{{ item.titulo }}</span>
+        </div>
+        <button class="text-xs text-[#1468D8] font-bold hover:underline">Baixar / Visualizar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO DE COMENTÁRIOS E PEDIDO DE GRUPO -->
+  <div class="border-t border-gray-200 pt-8">
+    <h3 class="text-xl font-bold text-[#0B1F3A] mb-4">Discussões e Interação do Módulo</h3>
+    
+    <!-- Caixa para enviar comentário -->
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-8">
+      <h4 class="text-sm font-bold text-gray-700 mb-3">Deixe sua dúvida, comentário ou pedido de grupo:</h4>
+      
+      <textarea [(ngModel)]="novoTexto" rows="3" placeholder="Escreva sua mensagem aqui..." 
+                class="w-full p-3 rounded-lg bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-[#1468D8] outline-none text-sm mb-3"></textarea>
+      
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <div class="flex items-center gap-3">
+          <label class="text-xs font-bold text-gray-600">Tipo de mensagem:</label>
+          <select [(ngModel)]="novoTipo" class="p-2 rounded-lg border border-gray-200 text-xs bg-gray-50 outline-none">
+            <option value="duvida">Dúvida comum</option>
+            <option value="comentario">Comentário geral</option>
+            <option value="grupo">Pedido de formação de grupo 🤝</option>
+          </select>
+        </div>
+
+        <button (click)="enviarComentario()" class="bg-[#1468D8] hover:bg-blue-700 text-white text-xs font-bold px-6 py-2.5 rounded-lg transition-colors">
+          Publicar Mensagem
+        </button>
+      </div>
+    </div>
+
+    <!-- Lista de Comentários deste Módulo -->
+    <div class="space-y-4">
+      <div *ngFor="let com of comentariosModulo" class="bg-white border border-gray-200 p-5 rounded-xl shadow-sm">
+        <div class="flex justify-between items-center mb-2">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center text-xs font-bold">
+              {{ com.avatar }}
+            </div>
+            <span class="text-xs font-bold text-gray-900">{{ com.autor }}</span>
+          </div>
+          <span class="text-[10px] text-gray-400">{{ com.dataHora }}</span>
+        </div>
+
+        <p class="text-sm text-gray-800 my-2">"{{ com.texto }}"</p>
+
+        <div *ngIf="com.tipo === 'grupo'" class="mt-2">
+          <span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2 py-0.5 rounded border border-purple-200">
+            🤝 Pedido de formação de grupo para trabalho
+          </span>
+        </div>
+      </div>
+
+      <div *ngIf="comentariosModulo.length === 0" class="text-center py-8 text-gray-400 text-xs">
+        Nenhum comentário neste módulo ainda. Seja o primeiro a interagir!
+      </div>
+    </div>
+
+  </div>
+
+</div>

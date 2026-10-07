@@ -8,6 +8,7 @@ import { Oportunidades } from './features/aluno/oportunidades/oportunidades';
 import { Portfolio } from './features/aluno/portfolio/portfolio';
 import { Calendario } from './features/aluno/calendario/calendario';
 import { Disciplina } from './features/aluno/disciplina/disciplina';
+import { Modulo } from './features/aluno/modulo/modulo';
 
 import { DashboardProfessor } from './features/professor/dashboard-professor/dashboard-professor';
 import { GerenciarTurmas } from './features/professor/gerenciar-turmas/gerenciar-turmas';
@@ -27,7 +28,8 @@ export const routes: Routes = [
       { path: 'oportunidades', component: Oportunidades },
       { path: 'portfolio', component: Portfolio },
       { path: 'calendario', component: Calendario },
-      { path: 'disciplina/:codigo', component: Disciplina }
+      { path: 'disciplina/:codigo', component: Disciplina },
+      { path: 'disciplina/:codigo/modulo/:moduloId', component: Modulo }
     ]
   },
   {

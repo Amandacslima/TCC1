@@ -89,4 +89,31 @@
     </div>
   </div>
 
+  <div class="mt-12">
+  <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold mb-4">INTERAÇÕES</p>
+  <h3 class="text-2xl font-serif text-gray-900 mb-6">Comentários Recentes na Turma</h3>
+
+  <div class="space-y-4">
+    <div *ngFor="let c of comentariosRecentes" class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+      <!-- Identificação completa do contexto do comentário -->
+      <div class="text-xs text-gray-500 mb-2">
+        <span class="font-bold text-[#0B1F3A]">{{ c.autor }}</span> sobre 
+        <span class="font-semibold text-[#1468D8]">{{ c.disciplinaNome }} ({{ c.turma }})</span> &gt; 
+        <span class="text-gray-700 font-medium">{{ c.moduloNome }}</span>
+      </div>
+
+      <!-- Texto do comentário -->
+      <p class="text-sm text-gray-800 my-2 italic">"{{ c.texto }}"</p>
+
+      <!-- Rodapé do card com data e tag de grupo se houver -->
+      <div class="flex justify-between items-center text-[11px] text-gray-400 mt-3 pt-2 border-t border-gray-50">
+        <span>{{ c.dataHora }}</span>
+        <span *ngIf="c.tipo === 'grupo'" class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded font-bold border border-purple-200">
+          🤝 Pedido de Grupo
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
