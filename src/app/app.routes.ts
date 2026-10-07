@@ -2,15 +2,16 @@ import { Routes } from '@angular/router';
 import { Login } from './features/auth/login/login';
 import { MainLayout } from './shared/layouts/main-layout/main-layout';
 import { DashboardAluno } from './features/aluno/dashboard-aluno/dashboard-aluno';
-import { Disciplinas } from './features/aluno/disciplinas/disciplinas';
+import { MinhasDisciplinas } from './features/aluno/minhas-disciplinas/minhas-disciplinas';
 import { Trilhas } from './features/aluno/trilhas/trilhas';
 import { Oportunidades } from './features/aluno/oportunidades/oportunidades';
 import { Portfolio } from './features/aluno/portfolio/portfolio';
 import { Calendario } from './features/aluno/calendario/calendario';
+import { Disciplina } from './features/aluno/disciplina/disciplina';
 
 import { DashboardProfessor } from './features/professor/dashboard-professor/dashboard-professor';
 import { GerenciarTurmas } from './features/professor/gerenciar-turmas/gerenciar-turmas';
-import { Relatorios } from './features/professor/relatorios/relatorios'; // Novo import
+import { Relatorios } from './features/professor/relatorios/relatorios';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -21,11 +22,12 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardAluno },
-      { path: 'disciplinas', component: Disciplinas },
+      { path: 'minhas-disciplinas', component: MinhasDisciplinas },
       { path: 'trilhas', component: Trilhas },
       { path: 'oportunidades', component: Oportunidades },
       { path: 'portfolio', component: Portfolio },
-      { path: 'calendario', component: Calendario }
+      { path: 'calendario', component: Calendario },
+      { path: 'disciplina/:codigo', component: Disciplina }
     ]
   },
   {
@@ -35,7 +37,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardProfessor },
       { path: 'turmas', component: GerenciarTurmas },
-      { path: 'relatorios', component: Relatorios } // Nova rota do professor
+      { path: 'relatorios', component: Relatorios }
     ]
   },
   { path: '**', redirectTo: 'login' }
